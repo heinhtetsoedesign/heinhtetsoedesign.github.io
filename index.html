@@ -483,6 +483,57 @@
             padding: 20px 0;
             text-align: center;
         }
+
+        /* Styling for dialog */
+        dialog {
+            width: 80%;
+            max-width: 800px;
+            border: none;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed; /* Ensures the dialog stays in place */
+            top: 50%; /* Centers the dialog vertically */
+            left: 50%; /* Centers the dialog horizontally */
+            transform: translate(-50%, -50%);
+        }
+
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.6); /* Backdrop for dialog */
+        }
+
+        /* Close button styling */
+        .close-dialog {
+            background-color: transparent;
+            border: none;
+            font-size: 24px;
+            position: absolute;
+            top: 10px;
+            right: 5px;
+            cursor: pointer;
+        }
+
+        /* Video player styling */
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        
+
+        /* Button styling for video links */
+        .watch-btn {
+            padding: 10px 20px;
+            background-color: #040856;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .watch-btn:hover {
+            background-color: #333;
+        }
         
     </style>
 </head>
@@ -520,7 +571,9 @@
                     <div class="project-content">
                         <h4>Project Title 1</h4>
                         <p>A brief description of the project...</p>
-                        <a href="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">Watch Video</a>
+                        <a class="watch-btn" onclick="playVideo('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4')">Watch Video</a>
+
+
                     </div>
                 </div>
                 <!-- Project 2 -->
@@ -529,7 +582,7 @@
                     <div class="project-content">
                         <h4>Project Title 2</h4>
                         <p>A brief description of the project...</p>
-                        <a href="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4">Watch Video</a>
+                        <a class="watch-btn" onclick="playVideo('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4')">Watch Video</a>
                     </div>
                 </div>
                 <!-- Project 3 -->
@@ -538,12 +591,21 @@
                     <div class="project-content">
                         <h4>Project Title 3</h4>
                         <p>A brief description of the project...</p>
-                        <a href="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4">Watch Video</a>
+                        <a class="watch-btn" onclick="playVideo('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4')">Watch Video</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+     <!-- The Dialog Element -->
+     <dialog id="videoDialog">
+        <button class="close-dialog">&times;</button>
+        <video id="videoPlayer" controls>
+            <source id="videoSource" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </dialog>
 
     <!-- Contact Section -->
     <section id="contact">
@@ -592,5 +654,36 @@
         const header = document.querySelector('header');
         header.classList.toggle('scrolled', window.scrollY > 50);
     });
+
+    // Get dialog, close button, and video elements
+const dialog = document.getElementById("videoDialog");
+const closeBtn = document.querySelector(".close-dialog");
+const video = document.getElementById("videoPlayer");
+const videoSource = document.getElementById("videoSource");
+
+// Function to play video with dynamic data-url
+function playVideo(videoUrl) {
+    videoSource.src = videoUrl; // Set the video URL dynamically
+    video.load(); // Load the video with the new source
+    dialog.showModal(); // Open the dialog
+    video.play(); // Play the video
+}
+
+// Close the dialog when the close button is clicked
+closeBtn.onclick = function() {
+    dialog.close(); // Close the dialog
+    video.pause(); // Pause the video when closing
+    video.currentTime = 0; // Reset video to start
+};
+
+// Close the dialog when clicking outside of the dialog content
+dialog.addEventListener('click', function(event) {
+    const rect = dialog.getBoundingClientRect();
+    if (!(event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom)) {
+        dialog.close(); // Close dialog if click is outside the dialog box
+        video.pause();
+        video.currentTime = 0;
+    }
+});
 </script>
 </html>
