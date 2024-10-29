@@ -568,78 +568,12 @@
         </div>
     </header>
 
-
-
     <!-- Projects Section -->
     <section id="projects">
         <div class="container">
             <p class="dollar-rate">1$ = 5000 Ks</p> 
-            <div class="project-grid">
-                <!-- Project 1 -->
-                <div class="project">
-                    <img loading="lazy" src="https://firebasestorage.googleapis.com/v0/b/hein-htet-soe-5f832.appspot.com/o/1.jpg?alt=media&token=60df6381-2b5a-4668-8761-ef6564f4ea54" alt="Project 1">
-                    <div class="project-content">
-                        <h4>Sexy Girl</h4>
-                        <p>Normal Price <strike> $70 </strike> </p>
-                        <p>Promotion Price $65</p>
-                        <a class="watch-btn" onclick="playVideo('https://firebasestorage.googleapis.com/v0/b/hein-htet-soe-5f832.appspot.com/o/1_.mp4?alt=media&token=ea126111-8f71-43a8-a5b0-eaf04e31a6e7')">Watch Video</a>
-
-
-                    </div>
-                </div>
-                <!-- Project 2 -->
-                <div class="project">
-                    <img loading="lazy" src="https://firebasestorage.googleapis.com/v0/b/hein-htet-soe-5f832.appspot.com/o/2.jpg?alt=media&token=79529e1c-18b0-4c82-960e-0f559cc16d8b" alt="Project 2">
-                    <div class="project-content">
-                        <h4>Sexy Girl</h4>
-                        <p>Normal Price <strike> $70 </strike> </p>
-                        <p>Promotion Price $65</p>
-                        <a class="watch-btn" onclick="playVideo('https://firebasestorage.googleapis.com/v0/b/hein-htet-soe-5f832.appspot.com/o/2_.mp4?alt=media&token=f64150bb-0b07-45ad-9678-033f2bb6bc97')">Watch Video</a>
-                    </div>
-                </div>
-                <!-- Project 3 -->
-                <div class="project">
-                    <img loading="lazy" src="https://firebasestorage.googleapis.com/v0/b/hein-htet-soe-5f832.appspot.com/o/3.jpg?alt=media&token=64727e49-e296-431d-87bf-8bc54b7cd29e" alt="Project 3">
-                    <div class="project-content">
-                        <h4>Sexy Girl</h4>
-                        <p>Normal Price <strike> $70 </strike> </p>
-                        <p>Promotion Price $65</p>
-                        <a class="watch-btn" onclick="playVideo('https://firebasestorage.googleapis.com/v0/b/hein-htet-soe-5f832.appspot.com/o/3_.mp4?alt=media&token=22f18604-67d0-4d67-91fa-8f89dfdf056c')">Watch Video</a>
-                    </div>
-                </div>
-                <!-- Project 4 -->
-                <div class="project">
-                    <img loading="lazy" src="https://firebasestorage.googleapis.com/v0/b/hein-htet-soe-5f832.appspot.com/o/4.jpg?alt=media&token=dbeb0343-8f45-4230-8b84-374b570b09f3" alt="Project 3">
-                    <div class="project-content">
-                        <h4>Sexy Girl</h4>
-                        <p>Normal Price <strike> $70 </strike> </p>
-                        <p>Promotion Price $65</p>
-                        <a class="watch-btn" onclick="playVideo('https://firebasestorage.googleapis.com/v0/b/hein-htet-soe-5f832.appspot.com/o/4_.mp4?alt=media&token=a8f77461-492b-4bcf-b79d-fdc7fc35dcdf')">Watch Video</a>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="project">
-                    <img loading="lazy" src="https://firebasestorage.googleapis.com/v0/b/hein-htet-soe-5f832.appspot.com/o/5.jpg?alt=media&token=a856bae0-9b80-4146-a0a2-0341863abc08" alt="Project 3">
-                    <div class="project-content">
-                        <h4>Boxing</h4>
-                        <p>Normal Price <strike> $60 </strike> </p>
-                        <p>Promotion Price $55</p>
-                        <a class="watch-btn" onclick="playVideo('https://firebasestorage.googleapis.com/v0/b/hein-htet-soe-5f832.appspot.com/o/5_.mp4?alt=media&token=c48bc65b-ba38-4c6b-9eb3-d2ff51cdbead')">Watch Video</a>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="project">
-                    <img loading="lazy" src="https://firebasestorage.googleapis.com/v0/b/hein-htet-soe-5f832.appspot.com/o/6.jpg?alt=media&token=b6fdc953-8d8a-4088-a047-016dd6e2ac6b" alt="Project 3">
-                    <div class="project-content">
-                        <h4>Football</h4>
-                        <p>Normal Price <strike> $55 </strike> </p>
-                        <p>Promotion Price $50</p>
-                        <a class="watch-btn" onclick="playVideo('https://firebasestorage.googleapis.com/v0/b/hein-htet-soe-5f832.appspot.com/o/6_.mp4?alt=media&token=05fd59c5-ca90-4fae-9321-e7247eec4bb3')">Watch Video</a>
-                    </div>
-                </div>
-                
+            <div class="project-grid" id="projectGrid">
+                <!-- Projects will be dynamically inserted here -->
             </div>
             <br>
             <p class="dollar-rate">1$ = 5000 Ks</p> 
@@ -679,6 +613,74 @@
 
 </body>
 <script>
+    const projects = [
+        { 
+            title: "Sexy Girl", 
+            normalPrice: 70, 
+            promotionPrice: 65, 
+            imageUrl: "https://pub-d1c0bebed8e24a5394c5e17a8ab492d8.r2.dev/1.jpg",
+            videoUrl: "https://pub-d1c0bebed8e24a5394c5e17a8ab492d8.r2.dev/1_.mp4"
+        },
+        { 
+            title: "Sexy Girl", 
+            normalPrice: 70, 
+            promotionPrice: 65, 
+            imageUrl: "https://pub-d1c0bebed8e24a5394c5e17a8ab492d8.r2.dev/2.jpg",
+            videoUrl: "https://pub-d1c0bebed8e24a5394c5e17a8ab492d8.r2.dev/2_.mp4"
+        },
+        { 
+            title: "Sexy Girl", 
+            normalPrice: 70, 
+            promotionPrice: 65, 
+            imageUrl: "https://pub-d1c0bebed8e24a5394c5e17a8ab492d8.r2.dev/3.jpg",
+            videoUrl: "https://pub-d1c0bebed8e24a5394c5e17a8ab492d8.r2.dev/3_.mp4"
+        },
+        { 
+            title: "Sexy Girl", 
+            normalPrice: 70, 
+            promotionPrice: 65, 
+            imageUrl: "https://pub-d1c0bebed8e24a5394c5e17a8ab492d8.r2.dev/4.jpg",
+            videoUrl: "https://pub-d1c0bebed8e24a5394c5e17a8ab492d8.r2.dev/4_.mp4"
+        },
+        { 
+            title: "Boxing", 
+            normalPrice: 60, 
+            promotionPrice: 55, 
+            imageUrl: "https://pub-d1c0bebed8e24a5394c5e17a8ab492d8.r2.dev/5.jpg",
+            videoUrl: "https://pub-d1c0bebed8e24a5394c5e17a8ab492d8.r2.dev/5_.mp4"
+        },
+        { 
+            title: "Football", 
+            normalPrice: 55, 
+            promotionPrice: 50, 
+            imageUrl: "https://pub-d1c0bebed8e24a5394c5e17a8ab492d8.r2.dev/6.jpg",
+            videoUrl: "https://pub-d1c0bebed8e24a5394c5e17a8ab492d8.r2.dev/6_.mp4"
+        }
+    ];
+
+    const projectGrid = document.getElementById('projectGrid');
+    projects.forEach(project => {
+        const projectElement = document.createElement('div');
+        projectElement.classList.add('project');
+        projectElement.innerHTML = `
+            <img loading="lazy" data-src="${project.imageUrl}" alt="${project.title}">
+            <div class="project-content">
+                <h4>${project.title}</h4>
+                <p>Normal Price <strike>$${project.normalPrice}</strike></p>
+                <p>Promotion Price $${project.promotionPrice}</p>
+                <a class="watch-btn" onclick="playVideo('${project.videoUrl}')">Watch Video</a>
+            </div>
+        `;
+        projectGrid.appendChild(projectElement);
+    });
+
+    window.addEventListener('load', () => {
+        const images = document.querySelectorAll('img[data-src]');
+        images.forEach(img => {
+            img.src = img.getAttribute('data-src');
+            img.removeAttribute('data-src');
+        });
+    });
     // Mobile menu toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
@@ -694,34 +696,34 @@
     });
 
     // Get dialog, close button, and video elements
-const dialog = document.getElementById("videoDialog");
-const closeBtn = document.querySelector(".close-dialog");
-const video = document.getElementById("videoPlayer");
-const videoSource = document.getElementById("videoSource");
+    const dialog = document.getElementById("videoDialog");
+    const closeBtn = document.querySelector(".close-dialog");
+    const video = document.getElementById("videoPlayer");
+    const videoSource = document.getElementById("videoSource");
 
-// Function to play video with dynamic data-url
-function playVideo(videoUrl) {
-    videoSource.src = videoUrl; // Set the video URL dynamically
-    video.load(); // Load the video with the new source
-    dialog.showModal(); // Open the dialog
-    video.play(); // Play the video
-}
-
-// Close the dialog when the close button is clicked
-closeBtn.onclick = function() {
-    dialog.close(); // Close the dialog
-    video.pause(); // Pause the video when closing
-    video.currentTime = 0; // Reset video to start
-};
-
-// Close the dialog when clicking outside of the dialog content
-dialog.addEventListener('click', function(event) {
-    const rect = dialog.getBoundingClientRect();
-    if (!(event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom)) {
-        dialog.close(); // Close dialog if click is outside the dialog box
-        video.pause();
-        video.currentTime = 0;
+    // Function to play video with dynamic data-url
+    function playVideo(videoUrl) {
+        videoSource.src = videoUrl; // Set the video URL dynamically
+        video.load(); // Load the video with the new source
+        dialog.showModal(); // Open the dialog
+        video.play(); // Play the video
     }
-});
+
+    // Close the dialog when the close button is clicked
+    closeBtn.onclick = function() {
+        dialog.close(); // Close the dialog
+        video.pause(); // Pause the video when closing
+        video.currentTime = 0; // Reset video to start
+    };
+
+    // Close the dialog when clicking outside of the dialog content
+    dialog.addEventListener('click', function(event) {
+        const rect = dialog.getBoundingClientRect();
+        if (!(event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom)) {
+            dialog.close(); // Close dialog if click is outside the dialog box
+            video.pause();
+            video.currentTime = 0;
+        }
+    });
 </script>
 </html>
