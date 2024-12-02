@@ -349,7 +349,8 @@
 
         .project img {
             width: 100%;
-            height: 200px;
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px;
             object-fit: cover;
         }
 
@@ -669,18 +670,18 @@
 
     const projectGrid = document.getElementById('projectGrid');
     projects.forEach(project => {
-        const projectElement = document.createElement('div');
-        projectElement.classList.add('project');
-        projectElement.innerHTML = `
-            <img loading="lazy" data-src="${project.imageUrl}" alt="${project.title}">
+        const projectDiv = document.createElement('div');
+        projectDiv.className = 'project';
+
+        projectDiv.innerHTML = `
+            <img src="${project.imageUrl}" alt="${project.title}" loading="lazy">
             <div class="project-content">
                 <h4>${project.title}</h4>
-                <p>Normal Price <strike>$${project.normalPrice}</strike></p>
-                <p>Promotion Price $${project.promotionPrice}</p>
-                <a class="watch-btn" onclick="playVideo('${project.videoUrl}')">Watch Video</a>
+                <p><del>${project.normalPrice} $</del> <strong>${project.promotionPrice} $</strong></p>
+                <a href="#" class="watch-btn" data-video="${project.videoUrl}">Watch Now</a>
             </div>
         `;
-        projectGrid.appendChild(projectElement);
+        projectGrid.appendChild(projectDiv);
     });
 
     window.addEventListener('load', () => {
