@@ -7,7 +7,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-JLKQ0VTGHF');
     </script>
     <meta charset="UTF-8">
@@ -207,7 +206,7 @@
             background-color: #040856;
         }
 
-        
+
         /* Contact Section */
         #contact {
             padding: 80px 20px;
@@ -349,8 +348,7 @@
 
         .project img {
             width: 100%;
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 10px;
+            height: 200px;
             object-fit: cover;
         }
 
@@ -530,7 +528,7 @@
             height: auto;
             border-radius: 10px;
         }
-        
+
 
         /* Button styling for video links */
         .watch-btn {
@@ -553,7 +551,7 @@
             color: #040856;     /* Use a distinct color */
             font-weight: bold;   /* Make it bold */
         }
-        
+
     </style>
 </head>
 <body>
@@ -604,7 +602,7 @@
         <div class="container">
             <h3>ဆက်သွယ်ရန်</h3>
             <p>လိုချင်တဲ့ပုံစံများကို စိတ်တိုင်းကျပြုလုပ်ပေးပါသည်။</p>
-    
+
             <div class="contact-links">
                 <!-- Telegram Link -->
                 <a href="https://t.me/beegraphicdesign" target="_blank" class="contact-btn telegram">
@@ -668,20 +666,27 @@
         }
     ];
 
+    
+
     const projectGrid = document.getElementById('projectGrid');
     projects.forEach(project => {
-        const projectDiv = document.createElement('div');
-        projectDiv.className = 'project';
-
-        projectDiv.innerHTML = `
-            <img src="${project.imageUrl}" alt="${project.title}" loading="lazy">
+        const projectElement = document.createElement('div');
+        projectElement.classList.add('project');
+        projectElement.innerHTML = `
+            <img 
+                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyBzdHlsZT0nYmFja2dyb3VuZC1jb2xvcjojZWVlOycvPg==" 
+                alt="${project.title}" 
+                data-src="${project.imageUrl}" 
+                loading="lazy" 
+                class="lazy-image">
             <div class="project-content">
                 <h4>${project.title}</h4>
-                <p><del>${project.normalPrice} $</del> <strong>${project.promotionPrice} $</strong></p>
-                <a href="#" class="watch-btn" data-video="${project.videoUrl}">Watch Now</a>
+                <p>Normal Price <strike>$${project.normalPrice}</strike></p>
+                <p>Promotion Price $${project.promotionPrice}</p>
+                <a class="watch-btn" onclick="playVideo('${project.videoUrl}')">Watch Video</a>
             </div>
         `;
-        projectGrid.appendChild(projectDiv);
+        projectGrid.appendChild(projectElement);
     });
 
     window.addEventListener('load', () => {
@@ -735,5 +740,25 @@
             video.currentTime = 0;
         }
     });
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const images = document.querySelectorAll('.lazy-image');
+    images.forEach(img => {
+      const realSrc = img.getAttribute('data-src');
+      const tempImage = new Image();
+
+      // Preload the real image
+      tempImage.onload = () => {
+        img.src = realSrc; // Replace placeholder with real image
+      };
+
+      // Handle error fallback (optional)
+      tempImage.onerror = () => {
+        console.error(`Failed to load image: ${realSrc}`);
+      };
+
+      tempImage.src = realSrc; // Start loading
+    });
+  });
 </script>
 </html>
